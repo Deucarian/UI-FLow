@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Deucarian.UIFlow;
+using Deucarian.UIFlow.UGUI;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -193,6 +194,29 @@ namespace Deucarian.UIFlow.Tests.PlayMode
 
             Assert.IsTrue(presentation.Result.HasValue);
             Assert.IsTrue(presentation.Result.Value);
+        }
+
+        [UnityTest]
+        public IEnumerator PushRouteActionExecutesThroughHostRouter()
+        {
+            TestWorld world = CreateWorld();
+            UIFlowRoute route = CreateRoute("action-target", world.MainRoot, typeof(TestScreen));
+            UIFlowPushRouteAction action = ScriptableObject.CreateInstance<UIFlowPushRouteAction>();
+            SetField(action, "_route", route);
+
+            Task task = action.ExecuteAsync(new UIFlowActionContext(world.Host, null, world.Host), CancellationToken.None);
+            yield return Await(task);
+
+            UIFlowChannelSnapshot main = FindChannel(world.Host, UIFlowChannelId.Main);
+            Assert.AreEqual(1, main.Stack.Count);
+            Assert.AreEqual(new UIFlowRouteId("action-target"), main.Stack[0].RouteId);
+        }
+
+        [Test]
+        public void BackAndDismissActionsDoNotExposeRouteFields()
+        {
+            Assert.IsNull(typeof(UIFlowBackAction).GetField("_route", BindingFlags.Instance | BindingFlags.NonPublic));
+            Assert.IsNull(typeof(UIFlowDismissAction).GetField("_route", BindingFlags.Instance | BindingFlags.NonPublic));
         }
 
         private TestWorld CreateWorld(bool includeModal = false, bool includeOverlay = false)

@@ -10,18 +10,21 @@ This sample demonstrates route-based navigation without direct references betwee
    - `overlay`, kind `Overlay`, Back participation disabled.
 2. Create route assets for Main Menu, Settings, Audio, Controls, Login, Confirm Quit, Info Dialog, and Loading Overlay.
 3. Assign prefab-backed routes to the appropriate channel.
-4. Put `BasicFlowSampleController` in the scene and assign the host and routes.
-5. Wire Unity UI buttons to the controller methods.
+4. Create UI Flow action assets from `Assets > Create > Deucarian > UI Flow > Actions`.
+5. Add `UIFlowButtonAction` to each Unity UI Button and assign the matching action asset.
+6. Use sample-specific action assets when a button needs sample data, such as `BasicFlowPushMessageAction` for argument passing or `BasicFlowConfirmQuitAction` for a typed Boolean presentation result.
 
 ## Demonstrated Behaviors
 
-- `OpenSettings`: Push with arguments.
-- `OpenControls`: Replace.
-- `ResetToMainMenu`: Reset to a protected root.
-- `Back`: Host-level Back with modal priority.
-- `ConfirmQuit`: Typed modal result with `PresentAsync<bool>`.
-- `ShowInfoDialog`: Dialog dismissal without a result.
-- `ShowLoadingOverlay` and `HideOverlay`: Overlay channel that does not participate in Back.
+- `UIFlowPushRouteAction`: Push.
+- `BasicFlowPushMessageAction`: Push with arguments.
+- `UIFlowReplaceRouteAction`: Replace.
+- `UIFlowResetRouteAction`: Reset to a protected root.
+- `UIFlowBackAction`: Host-level Back with modal priority.
+- `BasicFlowConfirmQuitAction`: Typed modal result with `PresentAsync<bool>`.
+- `UIFlowPresentRouteAction`: Dialog presentation and dismissal without a result.
+- `UIFlowDismissAction`: Dialog dismissal from inside a screen.
+- `UIFlowPushRouteAction` or `UIFlowResetRouteAction` on the overlay channel: overlay behavior that does not participate in Back.
 - `BasicFlowLoginRedirectGuard`: Guard redirect to a Login route.
 - `BasicFlowDenyGuard`: Guard denial with a structured result.
 

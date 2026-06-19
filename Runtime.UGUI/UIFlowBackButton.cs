@@ -8,6 +8,7 @@ namespace Deucarian.UIFlow.UGUI
     /// <summary>
     /// Button adapter for host-level Back routing.
     /// </summary>
+    [Obsolete("Use UIFlowButtonAction with a UIFlowBackAction asset instead.")]
     [RequireComponent(typeof(Button))]
     public sealed class UIFlowBackButton : MonoBehaviour
     {

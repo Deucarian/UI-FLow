@@ -9,3 +9,9 @@
 `Only the top entry in its channel can close itself`: a screen tried to close after it was covered or removed. Close/dismiss helpers target the exact stack entry for safety.
 
 `UI Flow host APIs must be called from Unity's main thread`: marshal work back to Unity before calling the router.
+
+`UIFlowButtonAction requires a UIFlowAction asset`: create an action asset from `Assets > Create > Deucarian > UI Flow > Actions` and assign it to the binder.
+
+`UI Flow action requires an explicit UIFlowHost or a parent UIFlowHost`: assign the host on the binder or place the button under the host hierarchy.
+
+`UI Flow dismiss action must run from inside an active UIFlowScreen context`: use `UIFlowDismissAction` on buttons inside screen prefabs that are currently presented by UI Flow.

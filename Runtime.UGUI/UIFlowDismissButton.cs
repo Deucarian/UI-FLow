@@ -8,6 +8,7 @@ namespace Deucarian.UIFlow.UGUI
     /// <summary>
     /// Button adapter that dismisses the containing active UI Flow screen entry.
     /// </summary>
+    [Obsolete("Use UIFlowButtonAction with a UIFlowDismissAction asset instead.")]
     [RequireComponent(typeof(Button))]
     public sealed class UIFlowDismissButton : MonoBehaviour
     {

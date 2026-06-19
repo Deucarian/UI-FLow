@@ -11,3 +11,7 @@ Derive from `UIFlowTransition`. Keep transition assets stateless. Use the suppli
 ## Custom Guards
 
 Derive from `UIFlowGuard`. Guards can allow, deny with a reason, or redirect to another route. Guards must not mutate stacks or start hidden navigation themselves.
+
+## Custom Button Actions
+
+Derive from `UIFlowAction` in the uGUI assembly when a button needs reusable behavior with its own serialized data. The action receives `UIFlowActionContext`, can resolve the host, and can execute through `IUIFlowRouter`. Keep the MonoBehaviour binder generic and put command-specific fields on the action asset.

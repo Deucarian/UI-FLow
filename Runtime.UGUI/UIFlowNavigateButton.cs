@@ -9,6 +9,7 @@ namespace Deucarian.UIFlow.UGUI
     /// <summary>
     /// Button adapter that requests Push, Replace, or Reset without referencing another screen.
     /// </summary>
+    [Obsolete("Use UIFlowButtonAction with a UIFlowPushRouteAction, UIFlowReplaceRouteAction, or UIFlowResetRouteAction asset instead.")]
     [RequireComponent(typeof(Button))]
     public sealed class UIFlowNavigateButton : MonoBehaviour
     {
@@ -117,6 +118,7 @@ namespace Deucarian.UIFlow.UGUI
         }
     }
 
+    [Obsolete("Use UIFlowButtonAction with route action assets instead.")]
     public enum UIFlowNavigateButtonOperation
     {
         Push,

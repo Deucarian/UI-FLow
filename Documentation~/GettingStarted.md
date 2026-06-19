@@ -11,4 +11,8 @@ await host.PushAsync(settingsRoute);
 await host.BackAsync();
 ```
 
+For uGUI buttons, add `UIFlowButtonAction` to the Button GameObject and assign a `UIFlowAction` asset. Create action assets from `Assets > Create > Deucarian > UI Flow > Actions`.
+
+Use `UIFlowPushRouteAction`, `UIFlowReplaceRouteAction`, and `UIFlowResetRouteAction` for route navigation. Use `UIFlowBackAction` for Back. Use `UIFlowDismissAction` inside a presented screen. Use `UIFlowPresentRouteAction` for simple modal presentation buttons.
+
 The host is main-thread-only. Marshal work to Unity's synchronization context before calling it from background code.

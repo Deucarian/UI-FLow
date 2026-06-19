@@ -1,6 +1,6 @@
 # Deucarian UI Flow
 
-Deucarian UI Flow is a Unity Package Manager package for deterministic, asynchronous UI navigation. It replaces project-specific `UIManager` singletons and direct panel references with explicit hosts, channels, routes, queued operations, guards, transitions, and typed modal presentations.
+Deucarian UI Flow is a Unity Package Manager package for deterministic, asynchronous UI navigation. It replaces project-specific `UIManager` singletons and direct panel references with explicit hosts, channels, routes, queued operations, guards, transitions, action assets, and typed modal presentations.
 
 Package ID: `com.deucarian.ui-flow`
 
@@ -44,6 +44,17 @@ if (result.HasValue && result.Value)
 await flow.BackAsync();
 ```
 
+For Unity UI buttons, put `UIFlowButtonAction` on the Button GameObject and assign a `UIFlowAction` asset. The MonoBehaviour only binds the click event; the ScriptableObject owns the command and its data.
+
+Built-in action assets:
+
+- `UIFlowPushRouteAction`
+- `UIFlowReplaceRouteAction`
+- `UIFlowResetRouteAction`
+- `UIFlowBackAction`
+- `UIFlowDismissAction`
+- `UIFlowPresentRouteAction`
+
 ## Architecture
 
 ```text
@@ -75,6 +86,8 @@ IUIFlowRouter / UIFlowHost
 - `IUIFlowScreenProvider`: extension point for custom route sources.
 - `UIFlowTransition`: extension point for stateless show/hide transitions.
 - `UIFlowGuard`: ordered asynchronous allow, deny, or redirect decisions.
+- `UIFlowButtonAction`: uGUI Button event binder.
+- `UIFlowAction`: base class for reusable action assets.
 
 ## Runtime Rules
 
@@ -87,6 +100,8 @@ The package contains one sample:
 - `Basic Flow`: `Samples~/BasicFlow`
 
 It demonstrates Push, Pop/Back, Replace, Reset, arguments, typed modal results, guard denial, guard redirect, overlay behavior, rapid-click queueing, and nested-host-friendly routing.
+
+The sample uses `UIFlowButtonAction` plus action assets. The old separate button components remain as obsolete compatibility wrappers.
 
 ## Integrations
 
