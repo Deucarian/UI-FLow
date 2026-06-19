@@ -1,0 +1,21 @@
+{
+  "name": "Deucarian.UIFlow.Tests.PlayMode",
+  "rootNamespace": "Deucarian.UIFlow.Tests.PlayMode",
+  "references": [
+    "Deucarian.UIFlow",
+    "Deucarian.UIFlow.UGUI",
+    "Unity.ugui"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "noEngineReferences": false
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Deucarian.UIFlow.UGUI",
+  "rootNamespace": "Deucarian.UIFlow.UGUI",
+  "references": [
+    "Deucarian.UIFlow",
+    "Unity.ugui"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

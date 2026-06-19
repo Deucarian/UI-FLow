@@ -1,0 +1,18 @@
+{
+  "name": "Deucarian.UIFlow.Samples.BasicFlow",
+  "rootNamespace": "Deucarian.UIFlow.Samples.BasicFlow",
+  "references": [
+    "Deucarian.UIFlow",
+    "Deucarian.UIFlow.UGUI",
+    "Unity.ugui"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

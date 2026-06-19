@@ -1,0 +1,19 @@
+{
+  "name": "Deucarian.UIFlow.Editor",
+  "rootNamespace": "Deucarian.UIFlow.Editor",
+  "references": [
+    "Deucarian.UIFlow",
+    "Deucarian.UIFlow.UGUI"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
