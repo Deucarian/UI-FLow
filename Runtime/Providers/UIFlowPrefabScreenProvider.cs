@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Deucarian.Common;
 using UnityEngine;
 
 namespace Deucarian.UIFlow
@@ -75,7 +76,7 @@ namespace Deucarian.UIFlow
 
             if (lease.OwnsGameObject)
             {
-                Object.Destroy(lease.Screen.gameObject);
+                UnityObjectUtility.DestroySafely(lease.Screen.gameObject);
             }
 
             return Task.CompletedTask;

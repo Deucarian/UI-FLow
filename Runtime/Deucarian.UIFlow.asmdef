@@ -2,6 +2,7 @@
   "name": "Deucarian.UIFlow",
   "rootNamespace": "Deucarian.UIFlow",
   "references": [
+    "Deucarian.Common",
     "Deucarian.Logging"
   ],
   "includePlatforms": [],

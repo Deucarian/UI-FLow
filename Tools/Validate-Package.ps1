@@ -56,13 +56,17 @@ if ($package.dependencies."com.deucarian.logging" -ne "1.0.1") {
     throw "Expected dependency com.deucarian.logging version 1.0.1"
 }
 
+if ($package.dependencies."com.deucarian.common" -ne "0.1.0") {
+    throw "Expected dependency com.deucarian.common version 0.1.0"
+}
+
 $runtimeAsmdef = Get-Content -LiteralPath (Join-Path $root "Runtime/Deucarian.UIFlow.asmdef") -Raw | ConvertFrom-Json
 if ($runtimeAsmdef.name -ne "Deucarian.UIFlow") {
     throw "Unexpected runtime asmdef name: $($runtimeAsmdef.name)"
 }
 
-if ($runtimeAsmdef.references.Count -ne 1 -or $runtimeAsmdef.references -notcontains "Deucarian.Logging") {
-    throw "Runtime assembly must reference only Deucarian.Logging."
+if ($runtimeAsmdef.references.Count -ne 2 -or $runtimeAsmdef.references -notcontains "Deucarian.Common" -or $runtimeAsmdef.references -notcontains "Deucarian.Logging") {
+    throw "Runtime assembly must reference only Deucarian.Common and Deucarian.Logging."
 }
 
 $uguiAsmdef = Get-Content -LiteralPath (Join-Path $root "Runtime.UGUI/Deucarian.UIFlow.UGUI.asmdef") -Raw | ConvertFrom-Json

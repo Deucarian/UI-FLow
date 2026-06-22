@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0 - 2026-06-22
+
+- Added `com.deucarian.common` as a runtime dependency for owned screen GameObject cleanup.
+- Replaced direct prefab screen destruction with `UnityObjectUtility.DestroySafely`.
+
 ## 0.3.0 - 2026-06-22
 
 - Added the public `UIFlowLog` facade backed by Deucarian Logging.

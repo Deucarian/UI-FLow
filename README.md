@@ -4,7 +4,7 @@ Deucarian UI Flow is a Unity Package Manager package for deterministic, asynchro
 
 Package ID: `com.deucarian.ui-flow`
 
-Current package version: `0.3.0`.
+Current package version: `0.4.0`.
 
 ## Installation
 
@@ -18,10 +18,11 @@ Install through Unity Package Manager with a Git URL:
 }
 ```
 
-The package requires Unity `2021.3` or newer. It depends on `com.deucarian.logging` for local package diagnostics and `com.unity.ugui` for optional button adapters; the core runtime assembly does not reference `UnityEngine.UI`.
+The package requires Unity `2021.3` or newer. It depends on `com.deucarian.common` for owned screen cleanup, `com.deucarian.logging` for local package diagnostics, and `com.unity.ugui` for optional button adapters; the core runtime assembly does not reference `UnityEngine.UI`.
 
 ## Dependencies
 
+- `com.deucarian.common`: runtime dependency used for safe owned screen cleanup across Play Mode and Edit Mode.
 - `com.deucarian.logging`: runtime dependency used by UI Flow's package-owned log categories. Logs remain local-only and do not add telemetry or remote reporting.
 - `com.unity.ugui`: supports the optional uGUI button adapters and action-asset binders.
 
@@ -125,7 +126,7 @@ The sample uses `UIFlowButtonAction` plus action assets. The old separate button
 
 ## Integrations
 
-Aside from Deucarian Logging and Unity uGUI support, this package intentionally has no runtime dependency on Core State, API, Session, UI Binding, Object Selection, or Integration packages.
+Aside from Deucarian Common, Deucarian Logging, and Unity uGUI support, this package intentionally has no runtime dependency on Core State, API, Session, UI Binding, Object Selection, or Integration packages.
 
 Planned separate integrations:
 
