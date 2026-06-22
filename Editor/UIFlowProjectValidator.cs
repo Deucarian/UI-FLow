@@ -13,7 +13,7 @@ namespace Deucarian.UIFlow.Editor
             IReadOnlyList<string> messages = UIFlowEditorValidation.ValidateProject();
             if (messages.Count == 0)
             {
-                Debug.Log("UI Flow project validation passed.");
+                UIFlowLog.Validation.Info("UI Flow project validation passed.");
                 EditorUtility.DisplayDialog("UI Flow Validation", "No UI Flow issues were found.", "OK");
                 return;
             }
@@ -22,11 +22,11 @@ namespace Deucarian.UIFlow.Editor
             {
                 if (messages[i].StartsWith("Error:"))
                 {
-                    Debug.LogError(messages[i]);
+                    UIFlowLog.Validation.Error(messages[i]);
                 }
                 else
                 {
-                    Debug.LogWarning(messages[i]);
+                    UIFlowLog.Validation.Warning(messages[i]);
                 }
             }
 

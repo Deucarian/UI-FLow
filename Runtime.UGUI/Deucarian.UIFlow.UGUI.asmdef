@@ -3,6 +3,7 @@
   "rootNamespace": "Deucarian.UIFlow.UGUI",
   "references": [
     "Deucarian.UIFlow",
+    "Deucarian.Logging",
     "Unity.ugui"
   ],
   "includePlatforms": [],

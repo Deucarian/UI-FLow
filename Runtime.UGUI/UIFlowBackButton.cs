@@ -57,7 +57,7 @@ namespace Deucarian.UIFlow.UGUI
             UIFlowHost host = ResolveHost();
             if (host == null)
             {
-                Debug.LogWarning("UIFlowBackButton requires a UIFlowHost reference or a parent host.", this);
+                UIFlowLog.UGUI.Warning("UIFlowBackButton requires a UIFlowHost reference or a parent host.", this);
                 return;
             }
 
@@ -69,7 +69,7 @@ namespace Deucarian.UIFlow.UGUI
             }
             catch (Exception ex)
             {
-                Debug.LogException(ex, this);
+                UIFlowLog.UGUI.Exception(ex, null, this);
             }
             finally
             {

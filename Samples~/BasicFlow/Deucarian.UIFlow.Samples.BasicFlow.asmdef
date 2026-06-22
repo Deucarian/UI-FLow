@@ -4,6 +4,7 @@
   "references": [
     "Deucarian.UIFlow",
     "Deucarian.UIFlow.UGUI",
+    "Deucarian.Logging",
     "Unity.ugui"
   ],
   "includePlatforms": [],

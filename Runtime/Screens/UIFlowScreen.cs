@@ -253,7 +253,7 @@ namespace Deucarian.UIFlow
             }
             catch (Exception ex)
             {
-                Debug.LogException(new UIFlowNavigationException(_context == null ? "<released>" : _context.Route.TargetChannel.ToString(), callbackName, _context == null ? "<released>" : _context.Route.RouteId.ToString(), "A screen notification hook threw after state was committed.", ex), this);
+                UIFlowLog.Screens.Exception(new UIFlowNavigationException(_context == null ? "<released>" : _context.Route.TargetChannel.ToString(), callbackName, _context == null ? "<released>" : _context.Route.RouteId.ToString(), "A screen notification hook threw after state was committed.", ex), null, this);
             }
         }
     }

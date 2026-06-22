@@ -23,7 +23,7 @@ namespace Deucarian.UIFlow.Samples.BasicFlow
 
             if (_route == null)
             {
-                Debug.LogWarning("BasicFlowPushMessageAction requires a route.", this);
+                UIFlowLog.Samples.Warning("BasicFlowPushMessageAction requires a route.", this);
                 return Task.CompletedTask;
             }
 

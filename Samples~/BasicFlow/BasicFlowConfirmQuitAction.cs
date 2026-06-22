@@ -22,14 +22,14 @@ namespace Deucarian.UIFlow.Samples.BasicFlow
 
             if (_confirmQuitRoute == null)
             {
-                Debug.LogWarning("BasicFlowConfirmQuitAction requires a confirm quit route.", this);
+                UIFlowLog.Samples.Warning("BasicFlowConfirmQuitAction requires a confirm quit route.", this);
                 return;
             }
 
             UIFlowPresentationResult<bool> result = await host.PresentAsync<bool>(_confirmQuitRoute, null, _options, cancellationToken);
             if (result.HasValue && result.Value)
             {
-                Debug.Log("Quit confirmed by Basic Flow sample.");
+                UIFlowLog.Samples.Info("Quit confirmed by Basic Flow sample.");
             }
         }
     }

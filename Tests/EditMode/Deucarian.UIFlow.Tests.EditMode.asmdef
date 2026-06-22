@@ -2,7 +2,8 @@
   "name": "Deucarian.UIFlow.Tests.EditMode",
   "rootNamespace": "Deucarian.UIFlow.Tests.EditMode",
   "references": [
-    "Deucarian.UIFlow"
+    "Deucarian.UIFlow",
+    "Deucarian.Logging"
   ],
   "includePlatforms": [
     "Editor"

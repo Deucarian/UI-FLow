@@ -19,7 +19,7 @@ namespace Deucarian.UIFlow.UGUI
                 return true;
             }
 
-            Debug.LogWarning("UI Flow action requires an explicit UIFlowHost or a parent UIFlowHost.", logContext);
+            UIFlowLog.UGUI.Warning("UI Flow action requires an explicit UIFlowHost or a parent UIFlowHost.", logContext);
             host = null;
             return false;
         }
@@ -31,7 +31,7 @@ namespace Deucarian.UIFlow.UGUI
                 return true;
             }
 
-            Debug.LogWarning("UI Flow dismiss action must run from inside an active UIFlowScreen context.", logContext);
+            UIFlowLog.UGUI.Warning("UI Flow dismiss action must run from inside an active UIFlowScreen context.", logContext);
             screen = null;
             return false;
         }

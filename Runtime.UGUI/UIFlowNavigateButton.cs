@@ -60,13 +60,13 @@ namespace Deucarian.UIFlow.UGUI
             UIFlowHost host = ResolveHost();
             if (host == null)
             {
-                Debug.LogWarning("UIFlowNavigateButton requires a UIFlowHost reference or a parent host.", this);
+                UIFlowLog.UGUI.Warning("UIFlowNavigateButton requires a UIFlowHost reference or a parent host.", this);
                 return;
             }
 
             if (_route == null)
             {
-                Debug.LogWarning("UIFlowNavigateButton requires a route.", this);
+                UIFlowLog.UGUI.Warning("UIFlowNavigateButton requires a route.", this);
                 return;
             }
 
@@ -90,7 +90,7 @@ namespace Deucarian.UIFlow.UGUI
             }
             catch (Exception ex)
             {
-                Debug.LogException(ex, this);
+                UIFlowLog.UGUI.Exception(ex, null, this);
             }
             finally
             {

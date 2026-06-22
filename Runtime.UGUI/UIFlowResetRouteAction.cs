@@ -26,7 +26,7 @@ namespace Deucarian.UIFlow.UGUI
             UIFlowChannelId channel = _rootRoute == null ? _channel : _rootRoute.TargetChannel;
             if (channel.IsEmpty)
             {
-                Debug.LogWarning("UIFlowResetRouteAction requires a channel when no root route is assigned.", this);
+                UIFlowLog.UGUI.Warning("UIFlowResetRouteAction requires a channel when no root route is assigned.", this);
                 return Task.CompletedTask;
             }
 

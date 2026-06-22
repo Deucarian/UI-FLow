@@ -24,7 +24,7 @@ namespace Deucarian.UIFlow.UGUI
 
             if (_route == null)
             {
-                Debug.LogWarning("UIFlowPresentRouteAction requires a route.", this);
+                UIFlowLog.UGUI.Warning("UIFlowPresentRouteAction requires a route.", this);
                 return;
             }
 

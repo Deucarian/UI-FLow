@@ -29,7 +29,7 @@ namespace Deucarian.UIFlow.UGUI
 
             if (_route == null)
             {
-                Debug.LogWarning("UIFlowPushRouteAction requires a route.", this);
+                UIFlowLog.UGUI.Warning("UIFlowPushRouteAction requires a route.", this);
                 return Task.CompletedTask;
             }
 

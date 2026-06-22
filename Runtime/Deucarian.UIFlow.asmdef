@@ -1,7 +1,9 @@
 {
   "name": "Deucarian.UIFlow",
   "rootNamespace": "Deucarian.UIFlow",
-  "references": [],
+  "references": [
+    "Deucarian.Logging"
+  ],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,

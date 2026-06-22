@@ -4,6 +4,8 @@ Deucarian UI Flow is a Unity Package Manager package for deterministic, asynchro
 
 Package ID: `com.deucarian.ui-flow`
 
+Current package version: `0.3.0`.
+
 ## Installation
 
 Install through Unity Package Manager with a Git URL:
@@ -16,7 +18,12 @@ Install through Unity Package Manager with a Git URL:
 }
 ```
 
-The package requires Unity `2021.3` or newer. It depends on `com.unity.ugui` for optional button adapters; the core runtime assembly does not reference `UnityEngine.UI`.
+The package requires Unity `2021.3` or newer. It depends on `com.deucarian.logging` for local package diagnostics and `com.unity.ugui` for optional button adapters; the core runtime assembly does not reference `UnityEngine.UI`.
+
+## Dependencies
+
+- `com.deucarian.logging`: runtime dependency used by UI Flow's package-owned log categories. Logs remain local-only and do not add telemetry or remote reporting.
+- `com.unity.ugui`: supports the optional uGUI button adapters and action-asset binders.
 
 ## Quick Start
 
@@ -93,6 +100,19 @@ IUIFlowRouter / UIFlowHost
 
 Public host APIs are main-thread-only and throw a contextual `UIFlowNavigationException` when called from another thread. Navigation requests before initialization are queued behind initialization. Unexpected provider, guard, lifecycle, or transition failures attempt rollback, raise a failure event, and throw `UIFlowNavigationException`.
 
+## Logging
+
+UI Flow logs through stable Deucarian Logging categories:
+
+- `UIFlow`
+- `UIFlow.Navigation`
+- `UIFlow.Screens`
+- `UIFlow.UGUI`
+- `UIFlow.Validation`
+- `UIFlow.Samples`
+
+Configure Deucarian Logging filters by category and level to isolate navigation queue, screen lifecycle, uGUI adapter, project validation, or sample output. UI Flow does not add telemetry, analytics, or remote reporting.
+
 ## Samples
 
 The package contains one sample:
@@ -105,7 +125,7 @@ The sample uses `UIFlowButtonAction` plus action assets. The old separate button
 
 ## Integrations
 
-This package intentionally has no runtime dependency on Core State, API, Session, UI Binding, Object Selection, or Integration packages.
+Aside from Deucarian Logging and Unity uGUI support, this package intentionally has no runtime dependency on Core State, API, Session, UI Binding, Object Selection, or Integration packages.
 
 Planned separate integrations:
 

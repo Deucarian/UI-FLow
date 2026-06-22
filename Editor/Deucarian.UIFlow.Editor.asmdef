@@ -3,7 +3,8 @@
   "rootNamespace": "Deucarian.UIFlow.Editor",
   "references": [
     "Deucarian.UIFlow",
-    "Deucarian.UIFlow.UGUI"
+    "Deucarian.UIFlow.UGUI",
+    "Deucarian.Logging"
   ],
   "includePlatforms": [
     "Editor"

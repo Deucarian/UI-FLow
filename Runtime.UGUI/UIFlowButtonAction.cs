@@ -40,7 +40,7 @@ namespace Deucarian.UIFlow.UGUI
             ResolveButton();
             if (_button == null)
             {
-                Debug.LogWarning("UIFlowButtonAction requires a Button reference.", this);
+                UIFlowLog.UGUI.Warning("UIFlowButtonAction requires a Button reference.", this);
                 return;
             }
 
@@ -84,7 +84,7 @@ namespace Deucarian.UIFlow.UGUI
 
             if (_action == null)
             {
-                Debug.LogWarning("UIFlowButtonAction requires a UIFlowAction asset.", this);
+                UIFlowLog.UGUI.Warning("UIFlowButtonAction requires a UIFlowAction asset.", this);
                 return;
             }
 
@@ -101,7 +101,7 @@ namespace Deucarian.UIFlow.UGUI
             }
             catch (Exception ex)
             {
-                Debug.LogException(ex, this);
+                UIFlowLog.UGUI.Exception(ex, null, this);
             }
             finally
             {

@@ -451,14 +451,14 @@ namespace Deucarian.UIFlow
         {
             if (_routeCatalog == null)
             {
-                Debug.LogWarning("UI Flow host '" + name + "' has no route catalog. Direct route asset navigation will still work.", this);
+                UIFlowLog.Validation.Warning("UI Flow host '" + name + "' has no route catalog. Direct route asset navigation will still work.", this);
             }
             else
             {
                 IReadOnlyList<string> catalogErrors = _routeCatalog.ValidateCatalog();
                 for (int i = 0; i < catalogErrors.Count; i++)
                 {
-                    Debug.LogWarning(catalogErrors[i], _routeCatalog);
+                    UIFlowLog.Validation.Warning(catalogErrors[i], _routeCatalog);
                 }
             }
 
@@ -739,7 +739,7 @@ namespace Deucarian.UIFlow
             }
             catch (Exception ex)
             {
-                Debug.LogException(ex, this);
+                UIFlowLog.Navigation.Exception(ex, null, this);
             }
 
             if (_shutdownCts != null)
@@ -779,7 +779,7 @@ namespace Deucarian.UIFlow
                 {
                     if (task.IsFaulted && task.Exception != null)
                     {
-                        Debug.LogException(task.Exception.GetBaseException(), this);
+                        UIFlowLog.Navigation.Exception(task.Exception.GetBaseException(), null, this);
                     }
 
                     return;
@@ -789,13 +789,13 @@ namespace Deucarian.UIFlow
                 {
                     if (t.IsFaulted && t.Exception != null)
                     {
-                        Debug.LogException(new UIFlowNavigationException(name, operation, "<none>", "A UI Flow background adapter task faulted.", t.Exception.GetBaseException()), this);
+                        UIFlowLog.Navigation.Exception(new UIFlowNavigationException(name, operation, "<none>", "A UI Flow background adapter task faulted.", t.Exception.GetBaseException()), null, this);
                     }
                 }, TaskScheduler.FromCurrentSynchronizationContext());
             }
             catch (Exception ex)
             {
-                Debug.LogException(new UIFlowNavigationException(name, operation, "<none>", "A UI Flow fire-and-forget adapter failed to start.", ex), this);
+                UIFlowLog.Navigation.Exception(new UIFlowNavigationException(name, operation, "<none>", "A UI Flow fire-and-forget adapter failed to start.", ex), null, this);
             }
         }
 
@@ -831,7 +831,7 @@ namespace Deucarian.UIFlow
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogException(new UIFlowNavigationException(args.ChannelId.ToString(), args.OperationType.ToString(), args.TargetRouteId.ToString(), "A UI Flow observer threw. Navigation state was preserved.", ex), this);
+                    UIFlowLog.Navigation.Exception(new UIFlowNavigationException(args.ChannelId.ToString(), args.OperationType.ToString(), args.TargetRouteId.ToString(), "A UI Flow observer threw. Navigation state was preserved.", ex), null, this);
                 }
             }
         }
@@ -852,7 +852,7 @@ namespace Deucarian.UIFlow
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogException(new UIFlowNavigationException(args.Snapshot.ChannelId.ToString(), "StackChanged", "<none>", "A UI Flow stack observer threw. Navigation state was preserved.", ex), this);
+                    UIFlowLog.Navigation.Exception(new UIFlowNavigationException(args.Snapshot.ChannelId.ToString(), "StackChanged", "<none>", "A UI Flow stack observer threw. Navigation state was preserved.", ex), null, this);
                 }
             }
         }
@@ -872,7 +872,7 @@ namespace Deucarian.UIFlow
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogException(ex, this);
+                    UIFlowLog.Navigation.Exception(ex, null, this);
                 }
             }
         }

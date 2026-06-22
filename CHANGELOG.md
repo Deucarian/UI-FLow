@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 - 2026-06-22
+
+- Added the public `UIFlowLog` facade backed by Deucarian Logging.
+- Replaced direct Unity Debug calls across runtime, uGUI adapters, editor validation, and samples with package-owned log categories.
+- Added `com.deucarian.logging` as a direct dependency and documented stable UI Flow logging categories.
+
 ## 0.2.0
 
 - Added the `UIFlowButtonAction` event binder and reusable `UIFlowAction` ScriptableObject action model.

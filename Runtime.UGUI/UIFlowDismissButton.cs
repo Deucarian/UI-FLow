@@ -53,7 +53,7 @@ namespace Deucarian.UIFlow.UGUI
             UIFlowScreen screen = GetComponentInParent<UIFlowScreen>();
             if (screen == null || !screen.HasContext)
             {
-                Debug.LogWarning("UIFlowDismissButton must be inside an active UIFlowScreen context.", this);
+                UIFlowLog.UGUI.Warning("UIFlowDismissButton must be inside an active UIFlowScreen context.", this);
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace Deucarian.UIFlow.UGUI
             }
             catch (Exception ex)
             {
-                Debug.LogException(ex, this);
+                UIFlowLog.UGUI.Exception(ex, null, this);
             }
             finally
             {
