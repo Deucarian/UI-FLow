@@ -1,11 +1,11 @@
 # Integrations
 
-UI Flow 0.1.0 intentionally ships without bridge packages.
+UI Flow 0.1.0 intentionally ships without Integration packages.
 
 Planned integrations belong in separate packages:
 
-- UI Flow to Core State bridge
-- UI Flow to Generic UI Items / UI Binding bridge
+- UI Flow to Core State integration
+- UI Flow to Generic UI Items / UI Binding integration
 - Addressables provider
 - Input System adapter
 - UI Toolkit adapter

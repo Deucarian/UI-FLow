@@ -105,12 +105,12 @@ The sample uses `UIFlowButtonAction` plus action assets. The old separate button
 
 ## Integrations
 
-This package intentionally has no runtime dependency on Core State, API, Session, UI Binding, Object Selection, or bridge packages.
+This package intentionally has no runtime dependency on Core State, API, Session, UI Binding, Object Selection, or Integration packages.
 
 Planned separate integrations:
 
-- UI Flow to Core State bridge
-- UI Flow to Generic UI Items / UI Binding bridge
+- UI Flow to Core State integration
+- UI Flow to Generic UI Items / UI Binding integration
 - Addressables screen provider
 - Input System Back adapter
 - UI Toolkit adapter
