@@ -1,0 +1,30 @@
+{
+  "packageId": "com.deucarian.ui-flow",
+  "displayName": "Deucarian UI Flow",
+  "ownedCapabilities": [
+    "ui-flow"
+  ],
+  "runtimeAssemblies": [
+    "Deucarian.UIFlow",
+    "Deucarian.UIFlow.UGUI"
+  ],
+  "editorAssemblies": [
+    "Deucarian.UIFlow.Editor"
+  ],
+  "sampleAssemblies": [
+    "Deucarian.UIFlow.Samples.BasicFlow"
+  ],
+  "testAssemblies": [
+    "Deucarian.UIFlow.Tests.EditMode",
+    "Deucarian.UIFlow.Tests.PlayMode"
+  ],
+  "requiredDependencies": [
+    "com.deucarian.common",
+    "com.deucarian.logging",
+    "com.unity.ugui"
+  ],
+  "optionalVersionDefinedDependencies": [],
+  "allowedDirectDebugCalls": [],
+  "allowedDirectUnityObjectLifetimeCalls": [],
+  "expectedSamplesRoot": "Samples~"
+}
