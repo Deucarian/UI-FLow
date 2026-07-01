@@ -1,24 +1,37 @@
 # Deucarian UI Flow
 
-Deucarian UI Flow is a Unity Package Manager package for deterministic, asynchronous UI navigation. It replaces project-specific `UIManager` singletons and direct panel references with explicit hosts, channels, routes, queued operations, guards, transitions, action assets, and typed modal presentations.
+## What this is
 
-Package ID: `com.deucarian.ui-flow`
+`com.deucarian.ui-flow` is a Unity Package Manager package for deterministic, asynchronous UI navigation. It replaces project-specific `UIManager` singletons and direct panel references with explicit hosts, channels, routes, queued operations, guards, transitions, action assets, and typed modal presentations.
 
 Current package version: `0.4.0`.
 
-## Installation
+## When to use it
 
-Install through Unity Package Manager with a Git URL:
+- You need explicit screen navigation without singleton UI managers.
+- You need channels such as main, modal, and overlay.
+- You need queued async navigation with guards, transitions, route assets, and typed modal results.
+- You need uGUI button adapters that trigger reusable action assets.
+
+## When not to use it
+
+- Do not use UI Flow for collection binding; `com.deucarian.ui-binding` owns that.
+- Do not put Core State coupling, persistence, API/session behavior, or object selection in the core package.
+- Do not use this package as a generic UI framework or visual styling owner.
+
+## Install
+
+Stable:
 
 ```json
-{
-  "dependencies": {
-    "com.deucarian.ui-flow": "https://github.com/Deucarian/UI-FLow.git#develop"
-  }
-}
+"com.deucarian.ui-flow": "https://github.com/Deucarian/UI-FLow.git#main"
 ```
 
-The package requires Unity `2021.3` or newer. It depends on `com.deucarian.common` for owned screen cleanup, `com.deucarian.logging` for local package diagnostics, and `com.unity.ugui` for optional button adapters; the core runtime assembly does not reference `UnityEngine.UI`.
+Development:
+
+```json
+"com.deucarian.ui-flow": "https://github.com/Deucarian/UI-FLow.git#develop"
+```
 
 ## Dependencies
 
@@ -26,7 +39,13 @@ The package requires Unity `2021.3` or newer. It depends on `com.deucarian.commo
 - `com.deucarian.logging`: runtime dependency used by UI Flow's package-owned log categories. Logs remain local-only and do not add telemetry or remote reporting.
 - `com.unity.ugui`: supports the optional uGUI button adapters and action-asset binders.
 
-## Quick Start
+The core runtime assembly does not reference `UnityEngine.UI`.
+
+## Unity compatibility
+
+Requires Unity 2021.3 or newer.
+
+## 60-second quick start
 
 1. Create `UIFlowRoute` assets for each screen.
 2. Add a `UIFlowHost` to the scene.
@@ -139,8 +158,34 @@ Planned separate integrations:
 - visual route graph/editor
 - Scene Flow integration
 
+## Troubleshooting
+
+- If navigation is rejected, inspect route guards and the thrown `UIFlowNavigationException`.
+- If queued navigation appears stuck, confirm the host was initialized and that a provider/transition did not fail.
+- If uGUI button actions do not fire, confirm `UIFlowButtonAction` is on the same GameObject as the Button and references a `UIFlowAction` asset.
+
+## Validation
+
+Run the shared package validator from the repository root:
+
+```powershell
+python C:/Repositories/Package-Registry/Tools/deucarian_package_validator.py --registry-root C:/Repositories/Package-Registry --repository-root . --config deucarian-package.json
+```
+
+Run the package's EditMode and PlayMode tests in Unity after code or assembly definition changes.
+
+Documentation-only updates should still pass:
+
+```powershell
+git diff --check
+```
+
 ## Architecture / Contributor Notes
 
 - [AGENTS.md](AGENTS.md) contains repository-specific ownership and Codex guidance.
 - Deucarian architecture rules live in [Package Registry](https://github.com/Deucarian/Package-Registry/blob/develop/ARCHITECTURE.md).
 - Capability ownership is tracked in [CAPABILITY_OWNERSHIP.md](https://github.com/Deucarian/Package-Registry/blob/develop/CAPABILITY_OWNERSHIP.md).
+
+## License
+
+See [LICENSE.md](LICENSE.md).
