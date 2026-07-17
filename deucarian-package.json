@@ -1,6 +1,7 @@
 {
   "packageId": "com.deucarian.ui-flow",
   "displayName": "Deucarian UI Flow",
+  "samplePolicy": "playable-scene",
   "ownedCapabilities": [
     "ui-flow"
   ],
