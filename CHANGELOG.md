@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1 - 2026-07-17
+
+- Added an importable Basic Flow scene and aligned exact Common and Logging dependencies.
+
 ## 0.4.0 - 2026-06-22
 
 - Added `com.deucarian.common` as a runtime dependency for owned screen GameObject cleanup.
