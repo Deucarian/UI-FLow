@@ -7,7 +7,10 @@ namespace Deucarian.UIFlow.Editor
 {
     public static class UIFlowProjectValidator
     {
-        [MenuItem("Tools/Deucarian/UI Flow/Validate Project")]
+        public const string MenuRoot = "Tools/Deucarian/Experience and Interaction/UI and Presentation/UI Flow/";
+        public const string MenuPath = MenuRoot + "Validate Project";
+
+        [MenuItem(MenuPath)]
         public static void ValidateProject()
         {
             IReadOnlyList<string> messages = UIFlowEditorValidation.ValidateProject();
