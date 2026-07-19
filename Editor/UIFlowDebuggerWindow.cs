@@ -7,9 +7,11 @@ namespace Deucarian.UIFlow.Editor
 {
     public sealed class UIFlowDebuggerWindow : EditorWindow
     {
+        public const string MenuPath = UIFlowProjectValidator.MenuRoot + "Debugger";
+
         private Vector2 _scroll;
 
-        [MenuItem("Tools/Deucarian/UI Flow/Debugger")]
+        [MenuItem(MenuPath)]
         public static void Open()
         {
             GetWindow<UIFlowDebuggerWindow>("UI Flow");
