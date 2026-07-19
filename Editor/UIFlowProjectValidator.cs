@@ -7,7 +7,7 @@ namespace Deucarian.UIFlow.Editor
 {
     public static class UIFlowProjectValidator
     {
-        public const string MenuRoot = "Tools/Deucarian/Experience & Interaction/UI & Presentation/UI Flow/";
+        public const string MenuRoot = "Tools/Deucarian/Experience and Interaction/UI and Presentation/UI Flow/";
         public const string MenuPath = MenuRoot + "Validate Project";
 
         [MenuItem(MenuPath)]
