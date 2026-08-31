@@ -4,7 +4,8 @@
   "references": [
     "Deucarian.UIFlow",
     "Deucarian.UIFlow.UGUI",
-    "Deucarian.Logging"
+    "Deucarian.Logging",
+    "Deucarian.Editor"
   ],
   "includePlatforms": [
     "Editor"

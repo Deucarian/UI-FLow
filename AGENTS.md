@@ -22,12 +22,13 @@ This package must not own:
 
 Allowed dependency shape:
 
-- May depend on Common for owned screen cleanup, Logging for flow diagnostics, and UGUI for UGUI adapter code.
+- May depend on Common for owned screen cleanup, Logging for flow diagnostics, UGUI for adapters, and Editor for shared Control Center and debugger presentation.
 
 Required dependencies and why:
 
 - `com.deucarian.common`: approved Unity object lifetime helper.
 - `com.deucarian.logging`: package logging facade and diagnostics output.
+- `com.deucarian.editor`: shared Control Center contracts and debugger workbench presentation.
 - `com.unity.ugui`: UGUI package used by UI adapters.
 
 Optional/version-defined dependencies:
@@ -42,7 +43,7 @@ Architecture exceptions:
 
 - Logging: Use Logging; no direct Unity Debug calls.
 - Common: Use `UnityObjectUtility.DestroySafely` for owned screen cleanup.
-- Editor UI: Editor tooling stays narrow and does not become shared editor chrome.
+- Editor UI: Keep UI Flow tooling narrow and render it through the shared `com.deucarian.editor` chrome; this package does not own shared presentation.
 - Diagnostics: No diagnostics ownership.
 - Testing: Keep EditMode/PlayMode tests focused on routing, transitions, and adapters.
 
