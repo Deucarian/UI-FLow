@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Registered UI Flow validation and the standalone debugger with Deucarian Control Center, removed their global menu entries, and aligned Logging to 1.0.4.
+
 ## 0.4.1 - 2026-07-17
 
 - Added an importable Basic Flow scene and aligned exact Common and Logging dependencies.

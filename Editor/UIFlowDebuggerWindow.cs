@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Deucarian.Editor;
 using Deucarian.UIFlow;
 using UnityEditor;
 using UnityEngine;
@@ -7,37 +8,49 @@ namespace Deucarian.UIFlow.Editor
 {
     public sealed class UIFlowDebuggerWindow : EditorWindow
     {
-        public const string MenuPath = UIFlowProjectValidator.MenuRoot + "Debugger";
-
         private Vector2 _scroll;
 
-        [MenuItem(MenuPath)]
         public static void Open()
         {
-            GetWindow<UIFlowDebuggerWindow>("UI Flow");
+            UIFlowDebuggerWindow window = GetWindow<UIFlowDebuggerWindow>("UI Flow");
+            window.minSize = new Vector2(520f, 420f);
+            window.Show();
         }
 
         private void OnGUI()
         {
-            _scroll = EditorGUILayout.BeginScrollView(_scroll);
-            IReadOnlyList<UIFlowHost> hosts = UIFlowDiagnosticRegistry.ActiveHosts;
-            if (hosts.Count == 0)
+            using (DeucarianEditorWorkbenchPanelScope page =
+                   DeucarianEditorWorkbenchGUI.BeginSettingsPage(GUILayout.ExpandHeight(true)))
             {
-                EditorGUILayout.HelpBox("No active UI Flow hosts are registered.", MessageType.Info);
-            }
-
-            for (int i = 0; i < hosts.Count; i++)
-            {
-                UIFlowHost host = hosts[i];
-                if (host == null)
+                _scroll = EditorGUILayout.BeginScrollView(_scroll);
+                DeucarianEditorChrome.DrawPackageHeader(
+                    "workflow",
+                    "UI Flow Debugger",
+                    "Inspect active hosts, queued operations, channels, and failures.");
+                IReadOnlyList<UIFlowHost> hosts = UIFlowDiagnosticRegistry.ActiveHosts;
+                if (hosts.Count == 0)
                 {
-                    continue;
+                    DeucarianEditorWorkbenchGUI.DrawStatusIconRow(
+                        "circle-info",
+                        "No active UI Flow hosts are registered.",
+                        DeucarianEditorStatus.Info);
                 }
 
-                DrawHost(host.CreateDiagnosticSnapshot());
+                for (int i = 0; i < hosts.Count; i++)
+                {
+                    UIFlowHost host = hosts[i];
+                    if (host == null)
+                    {
+                        continue;
+                    }
+
+                    DrawHost(host.CreateDiagnosticSnapshot());
+                }
+
+                DeucarianEditorChrome.DrawFooterVersion("com.deucarian.ui-flow");
+                EditorGUILayout.EndScrollView();
             }
 
-            EditorGUILayout.EndScrollView();
             if (Application.isPlaying)
             {
                 Repaint();
@@ -46,8 +59,8 @@ namespace Deucarian.UIFlow.Editor
 
         private static void DrawHost(UIFlowHostSnapshot snapshot)
         {
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField(snapshot.HostName, EditorStyles.boldLabel);
+            DeucarianEditorChrome.DrawSectionHeader(snapshot.HostName);
+            DeucarianEditorChrome.BeginSection();
             EditorGUILayout.LabelField("Initialization", snapshot.InitializationState.ToString());
             EditorGUILayout.LabelField("Queued", snapshot.QueuedOperationCount.ToString());
 
@@ -76,6 +89,8 @@ namespace Deucarian.UIFlow.Editor
             {
                 EditorGUILayout.HelpBox(snapshot.LastFailure.Message, MessageType.Error);
             }
+
+            DeucarianEditorChrome.EndSection();
         }
     }
 }
