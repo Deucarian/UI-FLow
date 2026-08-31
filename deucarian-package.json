@@ -22,7 +22,8 @@
   "requiredDependencies": [
     "com.deucarian.common",
     "com.deucarian.logging",
-    "com.unity.ugui"
+    "com.unity.ugui",
+    "com.deucarian.editor"
   ],
   "optionalVersionDefinedDependencies": [],
   "allowedDirectDebugCalls": [],
