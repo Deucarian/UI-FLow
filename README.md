@@ -145,6 +145,8 @@ The sample uses `UIFlowButtonAction` plus action assets. The old separate button
 
 ## Integrations
 
+The editor assembly uses `com.deucarian.editor` for its Control Center contribution and shared debugger workbench. Runtime UI Flow assemblies remain independent of Editor.
+
 Aside from Deucarian Common, Deucarian Logging, and Unity uGUI support, this package intentionally has no runtime dependency on Core State, API, Session, UI Binding, Object Selection, or Integration packages.
 
 Planned separate integrations:
