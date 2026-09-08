@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.2 - Unreleased
+
+- Compose navigation environment ports, guards, preparation, transitions and stack state. Preserve screen-lease ownership across initialization and rollback failures.
+
 ## Unreleased
 
 - Registered UI Flow validation and the standalone debugger with Deucarian Control Center, removed their global menu entries, and aligned Logging to 1.0.4.
