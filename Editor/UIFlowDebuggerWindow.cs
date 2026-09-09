@@ -12,10 +12,13 @@ namespace Deucarian.UIFlow.Editor
 
         public static void Open()
         {
-            UIFlowDebuggerWindow window = GetWindow<UIFlowDebuggerWindow>("UI Flow");
+            UIFlowDebuggerWindow window = DeucarianEditorWindowPages.GetStandalone<UIFlowDebuggerWindow>("UI Flow");
             window.minSize = new Vector2(520f, 420f);
             window.Show();
         }
+
+        public static IDeucarianEditorPage CreatePage() =>
+            DeucarianEditorImGuiPage.Create<UIFlowDebuggerWindow>("deucarian.ui-flow.debugger", window => window.OnGUI());
 
         private void OnGUI()
         {
