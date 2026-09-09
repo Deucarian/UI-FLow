@@ -21,7 +21,7 @@ namespace Deucarian.UIFlow.Editor
                 UIFlowDebuggerWindow.Open,
                 PackageId,
                 searchTerms: new[] { "ui", "navigation", "routes", "debugger" },
-                order: 300));
+                order: 300, createPage: UIFlowDebuggerWindow.CreatePage));
             DeucarianControlCenterRegistry.RegisterCardProvider(new Provider());
         }
 
@@ -55,7 +55,7 @@ namespace Deucarian.UIFlow.Editor
                         new DeucarianControlCenterAction(
                             "open-debugger",
                             "Open Debugger",
-                            UIFlowDebuggerWindow.Open),
+                            UIFlowDebuggerWindow.Open, navigationToolId: "deucarian.ui-flow.debugger"),
                         new DeucarianControlCenterAction(
                             "validate-project",
                             "Validate Project",

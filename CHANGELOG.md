@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.3] - 2026-09-09
+
+- Register package tooling and navigation actions as shared Control Center pages. Preserve the domain workflow while using Editor-owned submenus, in-window navigation, and UI scaling.
+
 ## 0.4.2 - Unreleased
 
 - Compose navigation environment ports, guards, preparation, transitions and stack state. Preserve screen-lease ownership across initialization and rollback failures.
