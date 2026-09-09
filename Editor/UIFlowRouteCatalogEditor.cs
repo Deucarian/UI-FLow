@@ -1,3 +1,4 @@
+using Deucarian.Editor;
 using System.Collections.Generic;
 using Deucarian.UIFlow;
 using UnityEditor;
@@ -8,6 +9,9 @@ namespace Deucarian.UIFlow.Editor
     [CustomEditor(typeof(UIFlowRouteCatalog))]
     public sealed class UIFlowRouteCatalogEditor : UnityEditor.Editor
     {
+        public override UnityEngine.UIElements.VisualElement CreateInspectorGUI() =>
+            DeucarianEditorInspector.Create(OnInspectorGUI);
+
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
@@ -16,10 +20,10 @@ namespace Deucarian.UIFlow.Editor
             IReadOnlyList<string> errors = catalog.ValidateCatalog();
             for (int i = 0; i < errors.Count; i++)
             {
-                EditorGUILayout.HelpBox(errors[i], MessageType.Error);
+                DeucarianEditorTextGUI.HelpBox(errors[i], MessageType.Error);
             }
 
-            if (GUILayout.Button("Collect Routes In Project"))
+            if (DeucarianEditorActionGUI.Button("Collect Routes In Project"))
             {
                 CollectRoutes(catalog);
             }
