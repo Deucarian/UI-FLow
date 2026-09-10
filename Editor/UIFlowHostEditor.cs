@@ -1,3 +1,4 @@
+using Deucarian.Editor;
 using System.Collections.Generic;
 using Deucarian.UIFlow;
 using UnityEditor;
@@ -8,6 +9,9 @@ namespace Deucarian.UIFlow.Editor
     [CustomEditor(typeof(UIFlowHost))]
     public sealed class UIFlowHostEditor : UnityEditor.Editor
     {
+        public override UnityEngine.UIElements.VisualElement CreateInspectorGUI() =>
+            DeucarianEditorInspector.Create(OnInspectorGUI);
+
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
@@ -16,19 +20,19 @@ namespace Deucarian.UIFlow.Editor
             IReadOnlyList<string> messages = UIFlowEditorValidation.ValidateHost(host);
             for (int i = 0; i < messages.Count; i++)
             {
-                EditorGUILayout.HelpBox(messages[i], messages[i].StartsWith("Error:") ? MessageType.Error : MessageType.Warning);
+                DeucarianEditorTextGUI.HelpBox(messages[i], messages[i].StartsWith("Error:") ? MessageType.Error : MessageType.Warning);
             }
 
             if (Application.isPlaying)
             {
                 UIFlowHostSnapshot snapshot = host.CreateDiagnosticSnapshot();
                 EditorGUILayout.Space();
-                EditorGUILayout.LabelField("Runtime", EditorStyles.boldLabel);
-                EditorGUILayout.LabelField("Initialization", snapshot.InitializationState.ToString());
-                EditorGUILayout.LabelField("Queued Operations", snapshot.QueuedOperationCount.ToString());
+                DeucarianEditorTextGUI.LabelField("Runtime", DeucarianEditorWorkbenchGUI.BoldLabelStyle);
+                DeucarianEditorTextGUI.LabelField("Initialization", snapshot.InitializationState.ToString());
+                DeucarianEditorTextGUI.LabelField("Queued Operations", snapshot.QueuedOperationCount.ToString());
                 if (snapshot.CurrentOperation != null)
                 {
-                    EditorGUILayout.LabelField("Current Operation", snapshot.CurrentOperation.OperationType + " " + snapshot.CurrentOperation.TargetRouteId);
+                    DeucarianEditorTextGUI.LabelField("Current Operation", snapshot.CurrentOperation.OperationType + " " + snapshot.CurrentOperation.TargetRouteId);
                 }
             }
         }
