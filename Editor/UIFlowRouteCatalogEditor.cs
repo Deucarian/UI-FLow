@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using Deucarian.UIFlow;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Deucarian.UIFlow.Editor
 {
     [CustomEditor(typeof(UIFlowRouteCatalog))]
     public sealed class UIFlowRouteCatalogEditor : UnityEditor.Editor
     {
-        public override UnityEngine.UIElements.VisualElement CreateInspectorGUI() =>
-            DeucarianEditorInspector.Create(OnInspectorGUI);
-
-        public override void OnInspectorGUI()
+        public override VisualElement CreateInspectorGUI()
         {
-            DrawDefaultInspector();
-
+            var root = DeucarianEditorInspector.CreateToolkit("Route catalog");
+            DeucarianEditorInspector.Properties(root, serializedObject);
             UIFlowRouteCatalog catalog = (UIFlowRouteCatalog)target;
-            IReadOnlyList<string> errors = catalog.ValidateCatalog();
-            for (int i = 0; i < errors.Count; i++)
+            var feedback = new VisualElement(); root.Add(feedback);
+            void Refresh()
             {
-                DeucarianEditorTextGUI.HelpBox(errors[i], MessageType.Error);
+                feedback.Clear();
+                if (catalog == null) return;
+                foreach (string error in catalog.ValidateCatalog()) feedback.Add(new HelpBox(error, HelpBoxMessageType.Error));
             }
-
-            if (DeucarianEditorActionGUI.Button("Collect Routes In Project"))
+            root.Add(DeucarianEditorWorkspaceControls.Button("Collect project routes", () =>
             {
-                CollectRoutes(catalog);
-            }
+                if (catalog == null) return;
+                CollectRoutes(catalog); Refresh();
+            }));
+            DeucarianEditorInspector.Observe(root, serializedObject, Refresh);
+            return root;
         }
 
         private static void CollectRoutes(UIFlowRouteCatalog catalog)
@@ -43,7 +45,7 @@ namespace Deucarian.UIFlow.Editor
                 }
             }
 
-            SerializedObject serialized = new SerializedObject(catalog);
+            using var serialized = new SerializedObject(catalog);
             SerializedProperty property = serialized.FindProperty("_routes");
             property.arraySize = routes.Count;
             for (int i = 0; i < routes.Count; i++)

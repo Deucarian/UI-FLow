@@ -6,7 +6,7 @@ For simple calls and setup, see [Simple usage](Documentation~/SimpleUsage.md).
 
 `com.deucarian.ui-flow` is a Unity Package Manager package for deterministic, asynchronous UI navigation. It replaces project-specific `UIManager` singletons and direct panel references with explicit hosts, channels, routes, queued operations, guards, transitions, action assets, and typed modal presentations.
 
-Current package version: `0.4.4`.
+Current package version: `0.4.5`.
 
 ## When to use it
 

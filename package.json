@@ -1,6 +1,6 @@
 {
   "name": "com.deucarian.ui-flow",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "displayName": "Deucarian UI Flow",
   "description": "Deterministic asynchronous UI navigation for Unity screens, channels, modal presentations, guards, transitions, and reusable route assets.",
   "unity": "2021.3",
