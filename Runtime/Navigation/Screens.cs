@@ -21,12 +21,14 @@ namespace Deucarian.UIFlow
             return current = new Registration(router);
         }
 
-        public static Task<UIFlowNavigationResult> OpenAsync(string routeId, object arguments = null,
+        public static Task<UIFlowNavigationResult> OpenAsync(ScreenKey screen, object arguments = null,
             CancellationToken cancellationToken = default)
         {
             var router = Router;
+            if (screen == null) throw new ArgumentNullException(nameof(screen), "Select a screen in the Inspector or pass a named ScreenKey.");
+            string routeId = screen.Id;
             if (!router.TryGetRoute(new UIFlowRouteId(routeId), out var route))
-                throw new KeyNotFoundException("No screen route is registered with ID '" + routeId + "'.");
+                throw new KeyNotFoundException("Screens.OpenAsync cannot find '" + routeId + "' in the configured router. Add this route to the UIFlowHost route catalog.");
             return router.PushAsync(route, arguments, cancellationToken: cancellationToken);
         }
 

@@ -265,10 +265,10 @@ namespace Deucarian.UIFlow.Tests.PlayMode
             SetField(world.Host, "_routeCatalog", catalog);
             using (Screens.Bind(world.Host))
             {
-                var open = Screens.OpenAsync("settings");
+                var open = Screens.OpenAsync(new NavigationScreenKey("settings"));
                 yield return Await(open);
                 Assert.That(open.Result.Succeeded, Is.True);
-                Assert.Throws<KeyNotFoundException>(() => Screens.OpenAsync("unknown"));
+                Assert.Throws<KeyNotFoundException>(() => Screens.OpenAsync(new NavigationScreenKey("unknown")));
                 var back = Screens.BackAsync();
                 yield return Await(back);
             }

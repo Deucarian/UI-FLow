@@ -4,6 +4,8 @@ Add ScreensHost to your already configured UIFlowHost. Put the settings route in
 
 Import the **Simple Usage** sample from Unity Package Manager. Its caller script is:
 
+Definition fields now use named, domain-specific keys. Select an existing definition from the Inspector dropdown or pass the same named key in code. Declare each project key once in a marked key set; ordinary caller methods do not accept raw IDs. Generated keys for asset-authored definitions require no asset reference in the caller. Owner-issued selection and row handles represent runtime instances.
+
 ```csharp
 using UnityEngine;
 
@@ -11,7 +13,9 @@ namespace Deucarian.UIFlow.Samples.SimpleUsage
 {
     public sealed class SimpleUsageExample : MonoBehaviour
     {
-        public System.Threading.Tasks.Task OpenSettings() => Screens.OpenAsync("settings");
+        [SerializeField] private ScreenKey settings = ScreenKeys.Settings;
+
+        public System.Threading.Tasks.Task OpenSettings() => Screens.OpenAsync(settings);
         public System.Threading.Tasks.Task GoBack() => Screens.BackAsync();
     }
 }
