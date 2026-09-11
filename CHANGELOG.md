@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4.5] - 2026-09-11
+
+- Use native route/host Inspectors and a focused navigation debugger with retained stack, channel and diagnostics controls; handle stale selections safely.
+- Require Editor 1.10.6 for the shared native controls, typography, responsive layouts and accessible interaction states.
+
 ## [0.4.4] - 2026-09-09
 
 ### Changed
