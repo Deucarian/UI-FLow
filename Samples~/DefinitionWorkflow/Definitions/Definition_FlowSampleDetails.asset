@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5de5060ccc4df2a7b247c002cfbff0, type: 3}
+  m_Name: Definition_FlowSampleDetails
+  m_EditorClassIdentifier: Deucarian.UIFlow::Deucarian.UIFlow.UIFlowRoute
+  _routeId:
+    _value: ddbd0cae827c4bbbadcea0e63843a136
+  _displayName: FlowSampleDetails
+  _targetChannel:
+    _value: main
+  _sourceMode: 0
+  _prefab: {fileID: 6458151488274767948, guid: da76b945e39b64c45813f6a561b22ab3, type: 3}
+  _externalBindingId:
+  _customProviderId:
+  _lifetime: 0
+  _duplicateRoutePolicy: 2
+  _showTransitionOverride: {fileID: 0}
+  _hideTransitionOverride: {fileID: 0}
+  _guards: []
+  _notes:

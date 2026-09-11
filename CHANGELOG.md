@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0] - 2026-09-11
+
+- Add typed reusable definition authoring and/or scoped Inspector components that share the existing C# service behavior.
+- Include a playable Definition Workflow sample with configured hosts, short callers and usage documentation.
+- Align declared package dependencies with the definition-authoring development wave.
+
+
 ## [0.4.5] - 2026-09-11
 
 - Use native route/host Inspectors and a focused navigation debugger with retained stack, channel and diagnostics controls; handle stale selections safely.

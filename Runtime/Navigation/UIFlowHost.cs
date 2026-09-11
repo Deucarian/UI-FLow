@@ -75,6 +75,7 @@ namespace Deucarian.UIFlow
 
         private void Awake()
         {
+            if (_routeCatalog == null) _routeCatalog = Resources.Load<UIFlowRouteCatalog>("Deucarian/UIFlow/ProjectScreens");
             CaptureMainThread();
             _shutdownCts = new CancellationTokenSource();
             UIFlowDiagnosticRegistry.Register(this);
@@ -449,18 +450,7 @@ namespace Deucarian.UIFlow
 
         private void ValidateConfiguration()
         {
-            if (_routeCatalog == null)
-            {
-                UIFlowLog.Validation.Warning("UI Flow host '" + name + "' has no route catalog. Direct route asset navigation will still work.", this);
-            }
-            else
-            {
-                IReadOnlyList<string> catalogErrors = _routeCatalog.ValidateCatalog();
-                for (int i = 0; i < catalogErrors.Count; i++)
-                {
-                    UIFlowLog.Validation.Warning(catalogErrors[i], _routeCatalog);
-                }
-            }
+            UIFlowHostValidation.ValidateCatalog(_routeCatalog, this);
 
             if (_navigators.Count == 0)
             {

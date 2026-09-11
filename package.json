@@ -1,6 +1,6 @@
 {
   "name": "com.deucarian.ui-flow",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "displayName": "Deucarian UI Flow",
   "description": "Deterministic asynchronous UI navigation for Unity screens, channels, modal presentations, guards, transitions, and reusable route assets.",
   "unity": "2021.3",
@@ -24,13 +24,18 @@
     "com.deucarian.common": "0.2.1",
     "com.unity.ugui": "1.0.0",
     "com.deucarian.logging": "1.0.4",
-    "com.deucarian.editor": "1.10.8"
+    "com.deucarian.editor": "1.12.0"
   },
   "samples": [
     {
       "displayName": "Basic Flow",
       "description": "Example action assets and screen scripts showing main, modal, overlay, guard, argument, presentation, and nested host flows without direct screen references.",
       "path": "Samples~/BasicFlow"
+    },
+    {
+      "displayName": "Definition Workflow",
+      "description": "Playable scene with typed C# calls, Inspector components, editable definitions and shared host ownership.",
+      "path": "Samples~/DefinitionWorkflow"
     }
   ]
 }
