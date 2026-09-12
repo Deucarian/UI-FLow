@@ -7,7 +7,6 @@ namespace Deucarian.UIFlow
     /// <summary>
     /// Extensible route asset describing a navigable UI destination.
     /// </summary>
-    [CreateAssetMenu(menuName = "Deucarian/UI Flow/Route", fileName = "UIFlowRoute")]
     public class UIFlowRoute : ScriptableObject
     {
         [SerializeField] private UIFlowRouteId _routeId;

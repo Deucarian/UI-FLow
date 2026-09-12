@@ -1,5 +1,15 @@
 # Deucarian UI Flow
 
+## Typed definition workflow
+
+The screen definition stores its prefab and navigation defaults. Callers use the generated screen key or the same typed Inspector selection.
+
+Start with the [Definition Workflow walkthrough](Documentation~/DefinitionWorkflow.md).
+Import **Definition Workflow** in Package Manager for a configured sample scene
+and short caller scripts. Definitions can be edited as assets or editable C# declarations; generated keys
+work in code and Inspector dropdowns.
+
+
 For simple calls and setup, see [Simple usage](Documentation~/SimpleUsage.md).
 
 ## Generated keys in code and the Inspector
@@ -48,7 +58,7 @@ The caller retains a typed identity, without a reference to the definition asset
 
 `com.deucarian.ui-flow` is a Unity Package Manager package for deterministic, asynchronous UI navigation. It replaces project-specific `UIManager` singletons and direct panel references with explicit hosts, channels, routes, queued operations, guards, transitions, action assets, and typed modal presentations.
 
-Current package version: `0.4.5`.
+Current package version: `0.5.0`.
 
 ## When to use it
 
