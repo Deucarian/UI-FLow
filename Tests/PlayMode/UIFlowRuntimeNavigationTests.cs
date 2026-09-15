@@ -255,6 +255,27 @@ namespace Deucarian.UIFlow.Tests.PlayMode
             return new TestWorld(host, mainRoot, modalRoot, overlayRoot);
         }
 
+        [UnityTest]
+        public IEnumerator ScreensFacadeResolvesCatalogIdsAndPreservesNavigation()
+        {
+            var world = CreateWorld();
+            var route = CreateRoute("settings", world.MainRoot, typeof(TestScreen));
+            var catalog = ScriptableObject.CreateInstance<UIFlowRouteCatalog>();
+            SetField(catalog, "_routes", new[] { route });
+            SetField(world.Host, "_routeCatalog", catalog);
+            using (Screens.Bind(world.Host))
+            {
+                var open = Screens.OpenAsync(new NavigationScreenKey("settings"));
+                yield return Await(open);
+                Assert.That(open.Result.Succeeded, Is.True);
+                Assert.Throws<KeyNotFoundException>(() => Screens.OpenAsync(new NavigationScreenKey("unknown")));
+                var back = Screens.BackAsync();
+                yield return Await(back);
+            }
+            Assert.That(Screens.IsConfigured, Is.False);
+            UnityEngine.Object.DestroyImmediate(catalog);
+        }
+
         private static UIFlowChannelConfig CreateChannel(UIFlowChannelId id, UIFlowChannelKind kind, Transform root, bool participatesInBack, int priority, bool protectRoot)
         {
             var channel = new UIFlowChannelConfig();

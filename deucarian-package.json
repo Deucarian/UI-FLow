@@ -13,7 +13,9 @@
     "Deucarian.UIFlow.Editor"
   ],
   "sampleAssemblies": [
-    "Deucarian.UIFlow.Samples.BasicFlow"
+    "Deucarian.Samples.UIFLow.DefinitionDeclarations",
+    "Deucarian.UIFlow.Samples.BasicFlow",
+    "Deucarian.UIFlow.Samples.DefinitionWorkflow"
   ],
   "testAssemblies": [
     "Deucarian.UIFlow.Tests.EditMode",
@@ -21,8 +23,8 @@
   ],
   "requiredDependencies": [
     "com.deucarian.common",
-    "com.deucarian.logging",
     "com.unity.ugui",
+    "com.deucarian.logging",
     "com.deucarian.editor"
   ],
   "optionalVersionDefinedDependencies": [],

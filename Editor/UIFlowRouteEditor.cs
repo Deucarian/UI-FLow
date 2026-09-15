@@ -1,86 +1,57 @@
 using Deucarian.Editor;
-using Deucarian.UIFlow;
 using UnityEditor;
-using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Deucarian.UIFlow.Editor
 {
     [CustomEditor(typeof(UIFlowRoute), true)]
     public sealed class UIFlowRouteEditor : UnityEditor.Editor
     {
-        public override UnityEngine.UIElements.VisualElement CreateInspectorGUI() =>
-            DeucarianEditorInspector.Create(OnInspectorGUI);
-
-        public override void OnInspectorGUI()
+        public override VisualElement CreateInspectorGUI()
         {
-            serializedObject.Update();
-
-            UIFlowRoute route = (UIFlowRoute)target;
-            DeucarianEditorTextGUI.LabelField("Stable Route ID", route.RouteId.ToString(), DeucarianEditorWorkbenchGUI.LabelStyle);
-
-            EditorGUILayout.BeginHorizontal();
-            if (DeucarianEditorActionGUI.Button("Copy Route ID"))
+            var route = (UIFlowRoute)target;
+            var root = DeucarianEditorInspector.CreateToolkit("UI Flow route");
+            var identity = DeucarianEditorWorkspaceControls.Label(string.Empty, "dw-muted");
+            root.Add(identity);
+            var feedback = new VisualElement();
+            void Refresh()
             {
-                EditorGUIUtility.systemCopyBuffer = route.RouteId.ToString();
+                feedback.Clear();
+                if (route == null) return;
+                identity.text = "Route ID · " + route.RouteId;
+                void Warn(string message, HelpBoxMessageType tone = HelpBoxMessageType.Error)
+                    => feedback.Add(new HelpBox(message, tone));
+                if (route.RouteId.IsEmpty) Warn("Route ID is empty. Generate a stable identity.");
+                if (route.TargetChannel.IsEmpty) Warn("Target channel is empty.");
+                if (route.SourceMode == UIFlowScreenSourceMode.Prefab && route.Prefab == null)
+                    Warn("Prefab routes require a UIFlowScreen prefab.");
+                if (route.SourceMode == UIFlowScreenSourceMode.ExternalSceneBinding && string.IsNullOrWhiteSpace(route.ExternalBindingId))
+                    Warn("Define an external binding ID.", HelpBoxMessageType.Warning);
+                if (route.SourceMode == UIFlowScreenSourceMode.CustomProvider && string.IsNullOrWhiteSpace(route.CustomProviderId))
+                    Warn("Custom provider routes require a provider ID.");
+                if (route.Lifetime != UIFlowScreenLifetime.Transient && route.DuplicateRoutePolicy == UIFlowDuplicateRoutePolicy.Allow)
+                    Warn("Cached and external routes cannot allow duplicate active entries. Use RejectIfPresent, IgnoreIfTop or PopToExisting.", HelpBoxMessageType.Warning);
+                if (route.Prefab != null)
+                    feedback.Add(DeucarianEditorWorkspaceControls.Button("Locate prefab", () => EditorGUIUtility.PingObject(route.Prefab)));
             }
-
-            if (DeucarianEditorActionGUI.Button("Regenerate Route ID"))
-            {
-                if (EditorUtility.DisplayDialog(
-                    "Regenerate UI Flow route ID?",
-                    "Regenerating the route ID can break saved route references, catalogs, and code that stores this ID. Continue only when intentionally creating a new identity.",
-                    "Regenerate",
-                    "Cancel"))
+            root.Add(DeucarianEditorWorkspaceControls.Actions(
+                DeucarianEditorWorkspaceControls.Button("Copy ID", () =>
                 {
+                    if (route != null) EditorGUIUtility.systemCopyBuffer = route.RouteId.ToString();
+                }),
+                DeucarianEditorWorkspaceControls.Button("Regenerate ID", () =>
+                {
+                    if (route == null || !EditorUtility.DisplayDialog(
+                        "Regenerate UI Flow route ID?",
+                        "This can break saved route references, catalogs and code that stores this ID. Continue only when intentionally creating a new identity.",
+                        "Regenerate", "Cancel")) return;
                     Undo.RecordObject(route, "Regenerate UI Flow Route ID");
-                    route.RegenerateRouteId();
-                    EditorUtility.SetDirty(route);
-                }
-            }
-            EditorGUILayout.EndHorizontal();
-
-            DrawPropertiesExcluding(serializedObject, "m_Script", "_routeId");
-            DrawValidation(route);
-
-            serializedObject.ApplyModifiedProperties();
-        }
-
-        private static void DrawValidation(UIFlowRoute route)
-        {
-            if (route.RouteId.IsEmpty)
-            {
-                DeucarianEditorTextGUI.HelpBox("Route ID is empty. UI Flow route assets should have a stable generated ID.", MessageType.Error);
-            }
-
-            if (route.TargetChannel.IsEmpty)
-            {
-                DeucarianEditorTextGUI.HelpBox("Target channel is empty.", MessageType.Error);
-            }
-
-            if (route.SourceMode == UIFlowScreenSourceMode.Prefab && route.Prefab == null)
-            {
-                DeucarianEditorTextGUI.HelpBox("Prefab routes require a UIFlowScreen prefab.", MessageType.Error);
-            }
-
-            if (route.SourceMode == UIFlowScreenSourceMode.ExternalSceneBinding && string.IsNullOrWhiteSpace(route.ExternalBindingId))
-            {
-                DeucarianEditorTextGUI.HelpBox("External scene binding routes should define an external binding ID.", MessageType.Warning);
-            }
-
-            if (route.SourceMode == UIFlowScreenSourceMode.CustomProvider && string.IsNullOrWhiteSpace(route.CustomProviderId))
-            {
-                DeucarianEditorTextGUI.HelpBox("Custom provider routes require a provider ID.", MessageType.Error);
-            }
-
-            if (route.Lifetime != UIFlowScreenLifetime.Transient && route.DuplicateRoutePolicy == UIFlowDuplicateRoutePolicy.Allow)
-            {
-                DeucarianEditorTextGUI.HelpBox("Cached and external routes cannot safely allow duplicate active entries. Use RejectIfPresent, IgnoreIfTop, or PopToExisting.", MessageType.Warning);
-            }
-
-            if (route.Prefab != null && DeucarianEditorActionGUI.Button("Ping Prefab"))
-            {
-                EditorGUIUtility.PingObject(route.Prefab);
-            }
+                    route.RegenerateRouteId(); EditorUtility.SetDirty(route); Refresh();
+                }, DeucarianEditorButtonRole.Destructive)));
+            DeucarianEditorInspector.Properties(root, serializedObject, "_routeId");
+            root.Add(feedback);
+            DeucarianEditorInspector.Observe(root, serializedObject, Refresh);
+            return root;
         }
     }
 }

@@ -1,0 +1,5 @@
+{
+  "name": "Deucarian.Samples.UIFLow.DefinitionDeclarations",
+  "references": ["Deucarian.Editor", "Deucarian.UIFlow", "Deucarian.UIFlow.Editor"],
+  "includePlatforms": ["Editor"]
+}

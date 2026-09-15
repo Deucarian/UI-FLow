@@ -1,0 +1,6 @@
+{
+  "name": "Deucarian.UIFlow.Samples.DefinitionWorkflow",
+  "references": [
+    "Deucarian.UIFlow"
+  ]
+}
